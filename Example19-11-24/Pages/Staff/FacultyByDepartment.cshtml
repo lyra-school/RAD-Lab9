@@ -1,0 +1,62 @@
+﻿@page
+@model Example19_11_24.Pages.Staff.FacultyByDepartmentModel
+@{
+    ViewData["Title"] = "Browse Faculty By Department";
+}
+
+<h1>@ViewData["Title"]</h1>
+
+<form method="post">
+    <div class="form-group">
+        <label for="DepartmentId">Course</label>
+        <select id="DepartmentId" name="DepartmentId" class="form-control" asp-for="DepartmentId">
+            <option value="">Select a department</option>
+            @if(Model.Departments != null)
+            {
+                @foreach (var dept in Model.Departments)
+                {
+                    <option value="@dept.Value">@dept.Text</option>
+                }
+            }
+        </select>
+    </div>
+    <button type="submit" class="btn btn-primary">View Faculty</button>
+</form>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Faculty[0].FirstName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Faculty[0].LastName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Faculty[0].DateOfBirth)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Faculty[0].Email)
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.Faculty)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.FirstName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.LastName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DateOfBirth)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Email)
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

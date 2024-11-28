@@ -1,0 +1,33 @@
+﻿@page
+@model AssignFacultyToCourseModel
+@{
+    ViewData["Title"] = "Assign Faculty to Course";
+}
+
+<h1>@ViewData["Title"]</h1>
+
+<form method="post">
+    <div class="form-group">
+        <label for="CourseId">Course</label>
+        <select id="CourseId" name="CourseId" class="form-control" asp-for="CourseId">
+            <option value="">Select a course</option>
+            @foreach (var course in Model.Courses)
+            {
+                <option value="@course.Value">@course.Text</option>
+            }
+        </select>
+    </div>
+
+    <div class="form-group">
+        <label for="FacultyId">Faculty</label>
+        <select id="FacultyId" name="FacultyId" class="form-control" asp-for="FacultyId">
+            <option value="">Select a faculty member</option>
+            @foreach (var faculty in Model.FacultyMembers)
+            {
+                <option value="@faculty.Value">@faculty.Text</option>
+            }
+        </select>
+    </div>
+
+    <button type="submit" class="btn btn-primary">Assign Faculty</button>
+</form>
